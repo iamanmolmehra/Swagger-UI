@@ -1,0 +1,949 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Project JIFFY by NG",
+      "description": "Project JIFFY API testing, visit our site https://ekko-temp.herokuapp.com/ :)",
+      "version": "4.0"
+    },
+    "produces": [
+      "application/json"
+    ],
+    "host": "localhost:5000",
+    "basePath": "/api",
+    "tags": [
+      {
+        "name": "Users",
+        "description": "Operation for Jiffy users",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "http://swagger.io"
+        }
+      },
+      {
+        "name": "Themes",
+        "description": "Operation for Jiffy themes"
+      },
+      {
+        "name": "Directdebit",
+        "description": "Operation for Jiffy directdebit"
+      },
+      {
+        "name": "Domains",
+        "description": "Operation for Jiffy domains"
+      },
+      {
+        "name": "Facebook",
+        "description": "Operation about facebook"
+      },
+      {
+        "name": "Stripe",
+        "description": "Operation for Jiffy stripe"
+      },
+      {
+        "name": "Plans",
+        "description": "Operation for Jiffy plans"
+      },
+      {
+        "name": "Pages",
+        "description": "Operation for Jiffy pages"
+      }
+    ],
+    "schemes": [
+      "http",
+      "https"
+    ],
+    "securityDefinitions": {
+      "Jiffystore_auth": {
+        "type": "oauth2",
+        "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+        "flow": "implicit",
+        "scopes": {
+          "write:pets": "modify pets in your account",
+          "read:pets": "read your pets"
+        }
+      },
+      "api_key": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "header"
+      }
+    },
+    "paths": {
+        "/anmol": {
+            "get": {
+              "summary": "This is testing swagger",
+              "tags": [
+                "Hello"
+              ],
+              "description": "hello swagger.",
+              "parameters": [
+                {
+                  "in": "body",
+                  "name": "body",
+                  "description": "this endpoint persents Sign Up facility for user.",
+                  "required": true,
+                  "schema": {
+                    "$ref": "#/definitions/signup"
+                  }
+                }
+              ],
+              "responses": {
+                "405": {
+                  "description": "Invalid input"
+                }
+              }
+            }
+          },
+      "/users/sign-up": {
+        "post": {
+          "summary": "Create new youser in Jiffy.",
+          "tags": [
+            "Users"
+          ],
+          "description": "signup user.",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "this endpoint persents Sign Up facility for user.",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/signup"
+              }
+            }
+          ],
+          "responses": {
+            "405": {
+              "description": "Invalid input"
+            }
+          }
+        }
+      },
+      "/users/login": {
+        "post": {
+          "summary": "Logs in a user",
+          "tags": [
+            "Users"
+          ],
+          "operationId": "loginUser",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Login to your Jiffy account...",
+              "required": [
+                "email",
+                "password"
+              ],
+              "schema": {
+                "$ref": "#/definitions/login"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User found and logged in successfully"
+            },
+            "401": {
+              "description": "Bad username, Not found in db"
+            },
+            "403": {
+              "description": "Username and password don't match"
+            }
+          }
+        }
+      },
+      "/users/upgrade": {
+        "post": {
+          "tags": [
+            "Users"
+          ],
+          "summary": "user upgrade",
+          "operationId": "upgradeUser",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "I don't sure about upgrade body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/user_upgrade"
+              }
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/users/password": {
+        "post": {
+          "tags": [
+            "Users"
+          ],
+          "summary": "update password",
+          "operationId": "upgradePassword",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "User update password",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/upgradepassword"
+              }
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/users/cancel": {
+        "post": {
+          "tags": [
+            "Users"
+          ],
+          "summary": "user cancel",
+          "operationId": "userCancel",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "User cancel (I'm not sure about body details)",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/usercancel"
+              }
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/users/change-password": {
+        "post": {
+          "tags": [
+            "Users"
+          ],
+          "summary": "change-password",
+          "operationId": "changePassword",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "User change-password",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/changepassword"
+              }
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/users/request-password-reset": {
+        "post": {
+          "tags": [
+            "Users"
+          ],
+          "summary": "request-password-reset",
+          "operationId": "passwordReset",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "User request-password-reset",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/passwordreset"
+              }
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/users/card-update": {
+        "post": {
+          "tags": [
+            "Users"
+          ],
+          "summary": "card-update",
+          "operationId": "cardUpdate",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "User card-update (check your body for conformation)",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/cardupdate"
+              }
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/users/whoami": {
+        "get": {
+          "tags": [
+            "Users"
+          ],
+          "summary": "whoami",
+          "operationId": "whoami",
+          "parameters": [],
+          "responses": {}
+        }
+      },
+      "/users/{facebook_id}": {
+        "get": {
+          "tags": [
+            "Users"
+          ],
+          "summary": "user by facebook_id",
+          "operationId": "facebookid",
+          "parameters": [
+            {
+              "name": "facebook_id",
+              "in": "path",
+              "description": "ID of facebook to return",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/themes/": {
+        "get": {
+          "tags": [
+            "Themes"
+          ],
+          "summary": "themes",
+          "operationId": "themes",
+          "parameters": [],
+          "responses": {}
+        }
+      },
+      "/themes/{id}": {
+        "get": {
+          "tags": [
+            "Themes"
+          ],
+          "summary": "themes by id",
+          "operationId": "themes_id",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of theme to return",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/directdebit/initiate": {
+        "get": {
+          "tags": [
+            "Directdebit"
+          ],
+          "summary": "directdebit initiate",
+          "operationId": "directdebitInitiate",
+          "parameters": [],
+          "responses": {}
+        }
+      },
+      "/directdebit/complete": {
+        "get": {
+          "tags": [
+            "Directdebit"
+          ],
+          "summary": "directdebit complete",
+          "operationId": "directdebitComplete",
+          "parameters": [],
+          "responses": {}
+        }
+      },
+      "/directdebit/webhook": {
+        "post": {
+          "tags": [
+            "Directdebit"
+          ],
+          "summary": "directdebit webhook",
+          "operationId": "directdebitWebhook",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "directdebit, I don't sure about exact body data.",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/directdebitwebhook"
+              }
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/domains/add": {
+        "post": {
+          "tags": [
+            "Domains"
+          ],
+          "summary": "add domains",
+          "operationId": "addDomains",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "domains, I don't sure about exact body data.",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/adddomains"
+              }
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/domains/search": {
+        "post": {
+          "tags": [
+            "Domains"
+          ],
+          "summary": "search domains",
+          "operationId": "searchDomains",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "domains, I don't sure about exact body data.",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/search_domains"
+              }
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/domains/contact": {
+        "post": {
+          "tags": [
+            "Domains"
+          ],
+          "summary": "domains-contact",
+          "operationId": "domainsContact",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "domains, I'm not sure about exact body data.",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/domains_contact"
+              }
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/domains/tlds": {
+        "get": {
+          "tags": [
+            "Domains"
+          ],
+          "summary": "domains tlds",
+          "operationId": "domainsTlds",
+          "parameters": [],
+          "responses": {}
+        }
+      },
+      "/domains/page": {
+        "get": {
+          "tags": [
+            "Domains"
+          ],
+          "summary": "domains-page",
+          "operationId": "domainsPage",
+          "parameters": [],
+          "responses": {}
+        }
+      },
+      "/domains/user": {
+        "post": {
+          "tags": [
+            "Domains"
+          ],
+          "summary": "domains-user",
+          "operationId": "domainsUser",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "domains, I'm not sure about exact body data.",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/domains_user"
+              }
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/stripe/webhook/": {
+        "post": {
+          "tags": [
+            "Stripe"
+          ],
+          "summary": "stripe webhook",
+          "operationId": "stripeWebhook",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "stripe webhook (check your body data for conformation then fill in object)",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/stripewebhook"
+              }
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/plans/": {
+        "get": {
+          "tags": [
+            "Plans"
+          ],
+          "summary": "plans",
+          "operationId": "plans",
+          "parameters": [],
+          "responses": {}
+        }
+      },
+      "/pages/public/hostname/{hostname}": {
+        "get": {
+          "tags": [
+            "Pages"
+          ],
+          "summary": "pages-public-hostname by hostname",
+          "operationId": "pagesPublicHostnameByHostname",
+          "parameters": [
+            {
+              "name": "name",
+              "in": "path",
+              "description": "NAME of public-hostname to return",
+              "required": true,
+              "type": "string",
+              "format": "int64"
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/pages/public/{id}/preview": {
+        "get": {
+          "tags": [
+            "Pages"
+          ],
+          "summary": "pages-public by id",
+          "operationId": "pagesPublicById",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of public-page by id to return",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/pages/public/by-url": {
+        "get": {
+          "tags": [
+            "Pages"
+          ],
+          "summary": "pages-public-by-url",
+          "operationId": "pagesPublicByUrl",
+          "parameters": [],
+          "responses": {}
+        }
+      },
+      "/pages/public/{id}": {
+        "get": {
+          "tags": [
+            "Pages"
+          ],
+          "summary": "public-pages by id",
+          "operationId": "publicPagesById",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of public-page to return",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/pages/{userId}/sync/{pageId}": {
+        "get": {
+          "tags": [
+            "Pages"
+          ],
+          "summary": "page by userId & sync by pageId",
+          "operationId": "pageByUserId&SyncByPageId",
+          "parameters": [
+            {
+              "name": "userId",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "pageId",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/pages/online/{id}": {
+        "get": {
+          "tags": [
+            "Pages"
+          ],
+          "summary": "online pages by id",
+          "operationId": "onlinePagesById",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of online page",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/pages/{userId}": {
+        "get": {
+          "tags": [
+            "Pages"
+          ],
+          "summary": "pages by userId",
+          "operationId": "pagesByUserId",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of pages",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/pages/page/{facebookPageId}": {
+        "post": {
+          "tags": [
+            "Pages"
+          ],
+          "summary": "post pages-page by facebookPageId",
+          "operationId": "postPagesPageByFacebookPageId",
+          "parameters": [
+            {
+              "name": "facebookPageId",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/pages/{pageId}/theme/{themeId}": {
+        "get": {
+          "tags": [
+            "Pages"
+          ],
+          "summary": "pages by pageId & theme by themeId",
+          "operationId": "pagesByPageId&ThemeByThemeId",
+          "parameters": [
+            {
+              "name": "pageId",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "themeId",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/pages/{userId}/refresh": {
+        "get": {
+          "tags": [
+            "Pages"
+          ],
+          "summary": "pages by userId-refresh",
+          "operationId": "pagesByUserIdRefresh",
+          "parameters": [
+            {
+              "name": "userId",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/pages/{pageId}/analytics": {
+        "get": {
+          "tags": [
+            "Pages"
+          ],
+          "summary": "pages by userId-analytics",
+          "operationId": "pagesByUserIdAnalytics",
+          "parameters": [
+            {
+              "name": "pageId",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/facebook/page_hook": {
+        "get": {
+          "summary": "Get facebook page_hook",
+          "operationId": "hookPage",
+          "tags": [
+            "Facebook"
+          ],
+          "parameters": [],
+          "responses": {}
+        }
+      }
+    },
+    "definitions": {
+      "login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "signup": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "user_upgrade": {
+        "type": "object",
+        "properties": {}
+      },
+      "upgradepassword": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "current_password": {
+            "type": "string"
+          },
+          "new_password": {
+            "type": "string"
+          }
+        }
+      },
+      "usercancel": {
+        "type": "object",
+        "properties": {}
+      },
+      "changepassword": {
+        "type": "object",
+        "properties": {
+          "reset_hash": {
+            "type": "string"
+          },
+          "new_password": {
+            "type": "string"
+          }
+        }
+      },
+      "passwordreset": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "cardupdate": {
+        "type": "object",
+        "properties": {
+          "token_id": {
+            "type": "string"
+          },
+          "card": {
+            "type": "string"
+          },
+          "user": {
+            "type": "string"
+          }
+        }
+      },
+      "stripewebhook": {
+        "type": "object",
+        "properties": {}
+      },
+      "directdebitwebhook": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "adddomains": {
+        "type": "object",
+        "properties": {
+          "register": {
+            "type": "string"
+          },
+          "DomainId": {
+            "type": "integer"
+          }
+        }
+      },
+      "search_domains": {
+        "type": "object",
+        "properties": {
+          "register": {
+            "type": "string"
+          },
+          "DomainId": {
+            "type": "integer"
+          }
+        }
+      },
+      "domains_contact": {
+        "type": "object",
+        "properties": {
+          "register": {
+            "type": "string"
+          },
+          "DomainId": {
+            "type": "integer"
+          }
+        }
+      },
+      "domains_user": {
+        "type": "object",
+        "properties": {
+          "register": {
+            "type": "string"
+          },
+          "DomainId": {
+            "type": "integer"
+          }
+        },
+        "login": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          }
+        },
+        "user_upgrade": {
+          "type": "object",
+          "properties": {}
+        },
+        "update password": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "current_password": {
+              "type": "string"
+            },
+            "new_password": {
+              "type": "string"
+            }
+          }
+        },
+        "user cancel": {
+          "type": "object",
+          "properties": {}
+        },
+        "change password": {
+          "type": "object",
+          "properties": {
+            "reset_hash": {
+              "type": "string"
+            },
+            "new_password": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
